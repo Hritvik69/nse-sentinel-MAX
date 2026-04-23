@@ -3048,7 +3048,6 @@ if scan_clicked:
         st.caption(f"🕰️ Time-travel active — {_snapped} ticker(s) snapshotted to {_tt_active_date}")
         # BUG FIX: Reset Nifty cache so get_nifty_20d_return() re-fetches
         # with the TT cutoff applied, not a previously cached live value.
-        global _NIFTY_20D_RET
         _NIFTY_20D_RET = None
 
     preload_bar, preload_status, preload_eta, preload_started = _start_stage_feedback(
@@ -3124,7 +3123,6 @@ if scan_clicked:
             _tt.restore()
             # BUG FIX: Reset Nifty cache after restore so next live scan
             # does not reuse the TT-truncated Nifty return value.
-            global _NIFTY_20D_RET  # noqa: PLW0603 — intentional module-level reset
             _NIFTY_20D_RET = None
 
     _scan_time_label = (
